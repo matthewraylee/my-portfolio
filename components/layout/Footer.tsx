@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <h2 className="text-xl font-bold">
-              <span className="text-primary">John</span> Doe
+              <span className="text-primary">Matthew</span> Ray Lee
             </h2>
             <p className="text-sm text-muted-foreground">
               Data Analyst | Business Intelligence Engineer | Software Developer
@@ -19,20 +19,38 @@ const Footer = () => {
 
           <div className="flex space-x-4">
             <Button variant="ghost" size="icon" aria-label="LinkedIn">
-              <Linkedin className="h-5 w-5" />
+              <a
+                href="https://www.linkedin.com/in/matthewraylee/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
             </Button>
             <Button variant="ghost" size="icon" aria-label="GitHub">
-              <Github className="h-5 w-5" />
+              <a
+                href="https://github.com/matthewraylee/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="h-5 w-5" />
+              </a>
             </Button>
             <Button variant="ghost" size="icon" aria-label="Email">
-              <Mail className="h-5 w-5" />
+              <a
+                href="mailto:matthewraylee.work@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
             </Button>
           </div>
         </div>
 
         <div className="mt-6 pt-6 border-t border-border text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} John Doe. All rights reserved.
+            © {new Date().getFullYear()} Matthew Ray Lee. All rights reserved.
           </p>
         </div>
       </div>

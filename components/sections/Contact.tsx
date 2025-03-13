@@ -39,7 +39,9 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                 </div>
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-muted-foreground">john.doe@example.com</p>
+                  <p className="text-muted-foreground">
+                    matthewraylee.work@gmail.com
+                  </p>
                 </div>
               </div>
 
@@ -50,7 +52,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                 <div>
                   <h4 className="font-medium">LinkedIn</h4>
                   <p className="text-muted-foreground">
-                    linkedin.com/in/johndoe
+                    linkedin.com/in/matthewraylee
                   </p>
                 </div>
               </div>
@@ -61,7 +63,9 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                 </div>
                 <div>
                   <h4 className="font-medium">GitHub</h4>
-                  <p className="text-muted-foreground">github.com/johndoe</p>
+                  <p className="text-muted-foreground">
+                    github.com/matthewraylee
+                  </p>
                 </div>
               </div>
             </div>
