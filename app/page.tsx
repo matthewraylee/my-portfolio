@@ -45,10 +45,18 @@ export default function Home() {
   const scrollToSection = (section: string) => {
     const element = sectionsRef.current[section];
     if (element) {
-      window.scrollTo({
-        top: element.offsetTop,
-        behavior: "smooth",
-      });
+      // Special case for home section - always scroll to top
+      if (section === "home") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        window.scrollTo({
+          top: element.offsetTop,
+          behavior: "smooth",
+        });
+      }
     }
   };
 
