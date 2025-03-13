@@ -1,9 +1,11 @@
 "use client";
 
-// import Link from "next/link";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { useTheme } from "next-themes";
 
 interface HeaderProps {
   activeSection: string;
@@ -12,13 +14,45 @@ interface HeaderProps {
 
 const Header = ({ activeSection, scrollToSection }: HeaderProps) => {
   const sections = ["home", "about", "projects", "skills", "resume", "contact"];
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // For debugging
+  useEffect(() => {
+    if (mounted) {
+      console.log("Current theme:", theme);
+      console.log("Resolved theme:", resolvedTheme);
+    }
+  }, [mounted, theme, resolvedTheme]);
+
+  // Use a more direct approach to determine which logo to show
+  const logoSrc =
+    mounted && resolvedTheme === "dark"
+      ? "/MattLogo_White.png"
+      : "/MattLogo_Black.png";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">
-          <span className="text-primary">John</span> Doe
-        </h1>
+        <div className="cursor-pointer" onClick={() => scrollToSection("home")}>
+          {mounted ? (
+            <Image
+              src={logoSrc}
+              alt="Mr. Lee"
+              width={80}
+              height={80}
+              className="h-12 w-auto"
+              priority
+            />
+          ) : (
+            // Placeholder during server rendering
+            <div className="h-12 w-24" />
+          )}
+        </div>
         <nav className="hidden md:flex space-x-6">
           {sections.map((section) => (
             <button
