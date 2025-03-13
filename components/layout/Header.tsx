@@ -70,9 +70,20 @@ const Header = ({ activeSection, scrollToSection }: HeaderProps) => {
         </nav>
         <div className="flex items-center space-x-4">
           <ModeToggle />
-          <Button variant="outline" size="sm" className="hidden md:flex">
-            <Download className="mr-2 h-4 w-4" />
-            Resume
+          <Button
+            variant="outline"
+            size="sm"
+            className="hidden md:flex"
+            asChild
+          >
+            <a
+              href="https://drive.google.com/file/d/1cpyXkWEZ8g4GTcwsFVxbh38H9toAj88Z/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              View Resume
+            </a>
           </Button>
         </div>
       </div>
