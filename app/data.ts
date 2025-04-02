@@ -3,55 +3,72 @@
 export const projects = [
   {
     id: 1,
-    title: "Data Visualization Dashboard",
+    title: "GarbEdge",
     description:
-      "Interactive dashboard built with Python, Tableau, and React to visualize complex business metrics.",
-    tags: ["Python", "Tableau", "React", "Data Visualization"],
-    image: "/placeholder.svg?height=200&width=400",
-    link: "#",
+      "Intelligent waste classification system using YOLOv8 to detect recycling contaminants and improve waste management efficiency",
+    tags: ["Python", "YOLOv8", "Computer Vision", "Gradio UI"],
+    image: "/Projects/GarbEdge/overview.png",
+    link: "https://github.com/matthewraylee/garbage_classification",
     // Additional details for expanded view
-    fullDescription: `This interactive dashboard provides real-time visualization of complex business metrics, enabling stakeholders to make data-driven decisions quickly and effectively.
+    fullDescription: `GarbEdge is an advanced waste classification system that uses computer vision and machine learning to identify and categorize different types of waste materials in real-time. The system helps reduce recycling contamination by accurately detecting items that don't belong in specific waste streams.
 
-The dashboard integrates data from multiple sources and presents it through intuitive charts, graphs, and interactive elements that allow users to drill down into specific metrics and time periods.`,
+The project utilizes YOLOv8, a state-of-the-art object detection model, trained on a custom dataset of waste materials to achieve high accuracy in classification. The interactive Gradio UI provides an intuitive interface for users to upload images or connect to camera feeds for real-time detection.`,
     problem:
-      "Business stakeholders needed a way to visualize complex data metrics in real-time to make informed decisions quickly.",
+      "Recycling contamination is a major issue in waste management, with up to 25% of collected recyclables being contaminated and ultimately sent to landfills. Manual sorting is labor-intensive, expensive, and poses health risks.",
     solution:
-      "Developed an interactive dashboard that pulls data from multiple sources and presents it through intuitive visualizations.",
+      "Developed an automated classification system using YOLOv8 that can identify different waste categories (recyclable, compostable, landfill) and flag contaminants in real-time with high accuracy.",
     outcome:
-      "Reduced decision-making time by 40% and improved data accessibility across the organization.",
+      "Achieved 92% classification accuracy on test data, with the potential to significantly reduce contamination rates and improve recycling efficiency when implemented at collection points.",
     technologies: [
       {
         name: "Python",
-        description: "Used for data processing and backend API",
+        description:
+          "Core programming language for model training and inference",
       },
-      { name: "Tableau", description: "Primary visualization tool" },
       {
-        name: "React",
-        description: "Frontend framework for interactive components",
+        name: "YOLOv8",
+        description:
+          "State-of-the-art object detection framework for waste identification",
       },
-      { name: "SQL", description: "Database queries and data extraction" },
-      { name: "AWS", description: "Cloud hosting and data storage" },
+      {
+        name: "Gradio",
+        description:
+          "User interface framework for creating interactive demo applications",
+      },
     ],
     gallery: [
       {
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Dashboard Overview",
+        type: "video",
+        videoId: "FBYZHzBy5O4",
+        caption: "GarbEdge Demo Video",
       },
       {
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Sales Metrics View",
+        type: "image",
+        url: "Projects/GarbEdge/1.jpg",
+        caption: "GarbEdge Pitch",
       },
       {
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "User Activity Analytics",
+        type: "image",
+        url: "Projects/GarbEdge/2.jpg",
+        caption: "GarbEdge Pitch",
+      },
+      {
+        type: "image",
+        url: "Projects/GarbEdge/3.jpg",
+        caption: "GarbEdge Pitch",
+      },
+      {
+        type: "image",
+        url: "Projects/GarbEdge/4.jpg",
+        caption: "Demo Day Winner!",
       },
     ],
     features: [
-      "Real-time data updates",
-      "Interactive filtering and sorting",
-      "Customizable views for different user roles",
-      "Export functionality for reports",
-      "Mobile-responsive design",
+      "Real-time object detection and classification of waste materials",
+      "Multi-class identification (paper, plastic, glass, metal, organic, etc.)",
+      "Contamination flagging with confidence scores",
+      "Interactive web interface for easy system interaction",
+      "Camera and image upload support for versatile deployment options",
     ],
   },
   {
@@ -81,14 +98,22 @@ The system analyzes patterns in customer purchases, website interactions, and su
     ],
     gallery: [
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Prediction Dashboard",
       },
       {
+        type: "video",
+        videoId: "ML8Hl4eFy3M", // Example YouTube video ID - replace with your actual video ID
+        caption: "Model Training Process",
+      },
+      {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Model Performance Metrics",
       },
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Customer Segmentation View",
       },
@@ -129,14 +154,22 @@ The system handles data validation, error handling, and recovery, ensuring relia
     ],
     gallery: [
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Pipeline Architecture",
       },
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Airflow DAG View",
       },
       {
+        type: "video",
+        videoId: "0sYXuQKMrjM", // Example YouTube video ID - replace with your actual video ID
+        caption: "ETL Pipeline in Action",
+      },
+      {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Monitoring Dashboard",
       },
@@ -176,14 +209,22 @@ The analysis reveals distinct customer segments with unique characteristics, ena
     ],
     gallery: [
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Segment Distribution",
       },
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Behavioral Patterns",
       },
       {
+        type: "video",
+        videoId: "K9QYRzJJL4g", // Example YouTube video ID - replace with your actual video ID
+        caption: "Segmentation Analysis Walkthrough",
+      },
+      {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Segment Profitability Analysis",
       },
@@ -223,14 +264,22 @@ The model provides accurate forecasts at different granularities (daily, weekly,
     ],
     gallery: [
       {
+        type: "video",
+        videoId: "seaWrKfkd6A", // Example YouTube video ID - replace with your actual video ID
+        caption: "Forecasting Model Overview",
+      },
+      {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Forecast vs Actual",
       },
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Seasonal Components",
       },
       {
+        type: "image",
         url: "/placeholder.svg?height=400&width=600",
         caption: "Trend Analysis",
       },

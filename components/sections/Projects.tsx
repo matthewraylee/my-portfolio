@@ -95,7 +95,11 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
                     asChild
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <Link href={project.link}>
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ExternalLink className="mr-2 h-4 w-4" />
                       Visit
                     </Link>
