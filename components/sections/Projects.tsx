@@ -14,7 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ProjectDialog } from "@/components/projects/project-dialog";
+import ProjectDialog from "@/components/projects/project-dialog";
 import { projects } from "@/app/data";
 
 const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
@@ -61,9 +61,16 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                   />
+                  {project.date && (
+                    <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded">
+                      {project.date}
+                    </div>
+                  )}
                 </div>
                 <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
+                  <div className="flex justify-between items-start">
+                    <CardTitle>{project.title}</CardTitle>
+                  </div>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
                 <CardContent className="flex-grow">

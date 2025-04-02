@@ -6,6 +6,8 @@ export const projects = [
     title: "GarbEdge",
     description:
       "Intelligent waste classification system using YOLOv8 to detect recycling contaminants and improve waste management efficiency",
+    date: "2025", // Added date field
+    dateRange: "Jan - Mar 2025", // Added dateRange field
     tags: ["Python", "YOLOv8", "Computer Vision", "Gradio UI"],
     image: "/Projects/GarbEdge/overview.png",
     link: "https://github.com/matthewraylee/garbage_classification",
@@ -73,9 +75,11 @@ The project utilizes YOLOv8, a state-of-the-art object detection model, trained 
   },
   {
     id: 2,
-    title: "Predictive Analytics Tool",
+    title: "EV Dashboard",
     description:
       "Machine learning model that predicts customer behavior using historical transaction data.",
+    date: "2022", // Added date field
+    dateRange: "Jun - Aug 2022", // Added dateRange field
     tags: ["Python", "Scikit-learn", "SQL", "Machine Learning"],
     image: "/placeholder.svg?height=200&width=400",
     link: "#",
@@ -128,59 +132,79 @@ The system analyzes patterns in customer purchases, website interactions, and su
   },
   {
     id: 3,
-    title: "ETL Pipeline Automation",
+    title: "Unveiling the Masters",
     description:
-      "Automated data pipeline that extracts, transforms, and loads data from multiple sources into a data warehouse.",
-    tags: ["Python", "Airflow", "SQL", "AWS"],
-    image: "/placeholder.svg?height=200&width=400",
-    link: "#",
+      "Data-driven analysis and predictive modeling to identify insights, trends, and future champions at Augusta National Golf Club.",
+    date: "2024",
+    dateRange: "Oct - Nov 2024",
+    tags: ["Python", "Random Forest", "Data Visualization", "Sports Analytics"],
+    image: "/Projects/MastersAnalytics/cover.webp",
+    link: "https://www.kaggle.com/code/matthewrlee/unveiling-the-masters-at-augusta",
     // Additional details for expanded view
-    fullDescription: `This ETL pipeline automates the process of extracting data from multiple sources, transforming it according to business rules, and loading it into a centralized data warehouse.
+    fullDescription: `The Masters Tournament, held annually at Augusta National Golf Club, is renowned for its challenging course and prestige, making it one of the most coveted titles in golf. This project seeks to unravel insights from this legendary event, leveraging historical data to explore player performances, trends, and potential predictive strategies for identifying future champions.
 
-The system handles data validation, error handling, and recovery, ensuring reliable data processing even with inconsistent source data.`,
+Using PGA Tour Data (2015–2022) and Masters-specific data, I developed a comprehensive analysis that examines what makes the Masters unique among tournaments and what separates winners from the field. Given the limitations of available data, such as restricted strokes gained metrics for pre-2021 tournaments, my approach was tailored to optimize the use of available information.`,
     problem:
-      "Manual data processing was time-consuming, error-prone, and couldn't scale with growing data volumes.",
+      "Golf tournament outcomes are influenced by numerous factors including player skill, course conditions, and performance metrics. Identifying which factors are most predictive of success at the Masters Tournament requires sophisticated analysis of historical data.",
     solution:
-      "Developed an automated ETL pipeline with Apache Airflow to handle the entire data processing workflow.",
+      "Developed two predictive models using Random Forest regression to predict player rankings: (1) a multi-metric model using strokes gained data from 2021-2022, and (2) a simplified model using only strokes data from 2015-2022. The analysis revealed that strokes emerged as the most significant feature for predicting performance.",
     outcome:
-      "Reduced data processing time by 85% and eliminated manual errors, while enabling daily instead of weekly data updates.",
+      "Successfully predicted Scottie Scheffler as the top performer for the 2022 Masters, with the model showing an R² score of 0.43. Comparative analysis of 2021 and 2022 winners revealed that strong driving and consistent putting were key differentiators in tournament success.",
     technologies: [
-      { name: "Python", description: "Primary programming language" },
-      { name: "Apache Airflow", description: "Workflow orchestration" },
-      { name: "SQL", description: "Data transformation and loading" },
-      { name: "AWS Redshift", description: "Data warehouse" },
-      { name: "AWS S3", description: "Data lake storage" },
-      { name: "Docker", description: "Containerization" },
+      {
+        name: "Python",
+        description: "Core programming language for data analysis and modeling",
+      },
+      {
+        name: "Pandas",
+        description: "Data processing, cleaning, and transformation",
+      },
+      {
+        name: "Matplotlib/Seaborn",
+        description: "Data visualization and statistical graphics",
+      },
+      {
+        name: "Scikit-learn",
+        description: "Machine learning implementation for predictive modeling",
+      },
+      {
+        name: "NumPy",
+        description: "Numerical computing and array operations",
+      },
+      {
+        name: "Jupyter Notebook",
+        description: "Interactive development environment for analysis",
+      },
     ],
     gallery: [
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Pipeline Architecture",
+        url: "/Projects/MastersAnalytics/intro.png",
+        caption: "Average Strokes Gained by Tournament (2021-2022)",
       },
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Airflow DAG View",
-      },
-      {
-        type: "video",
-        videoId: "0sYXuQKMrjM", // Example YouTube video ID - replace with your actual video ID
-        caption: "ETL Pipeline in Action",
+        url: "/Projects/MastersAnalytics/overview.png",
+        caption: "Strokes Gained Distribution Across Key Performance Areas",
       },
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Monitoring Dashboard",
+        url: "/Projects/MastersAnalytics/results_1.png",
+        caption: "Performance Comparison Between 2021-2022 Masters Winners",
+      },
+      {
+        type: "image",
+        url: "/Projects/MastersAnalytics/results_2.png",
+        caption: "Feature Importance Analysis for Performance Prediction",
       },
     ],
     features: [
-      "Automated scheduling and execution",
-      "Real-time monitoring and alerts",
-      "Data quality validation",
-      "Error handling and recovery",
-      "Scalable architecture",
-      "Comprehensive logging",
+      "Comprehensive data cleaning and preparation addressing inconsistencies in tournament data",
+      "Comparative analysis of Masters Tournament with other major PGA events",
+      "Statistical examination of Strokes Gained metrics distribution and significance",
+      "Radar chart visualization comparing winning strategies between champions",
+      "Predictive modeling using Random Forest to identify potential future winners",
+      "Feature importance analysis identifying key performance indicators for success",
     ],
   },
   {
@@ -188,6 +212,8 @@ The system handles data validation, error handling, and recovery, ensuring relia
     title: "Customer Segmentation Analysis",
     description:
       "Advanced clustering algorithm that segments customers based on behavior, demographics, and purchase history.",
+    date: "2022", // Added date field
+    dateRange: "Sep - Nov 2022", // Added dateRange field
     tags: ["Python", "K-means", "Tableau", "Customer Analytics"],
     image: "/placeholder.svg?height=200&width=400",
     link: "#",
@@ -242,6 +268,8 @@ The analysis reveals distinct customer segments with unique characteristics, ena
     title: "Sales Forecasting Model",
     description:
       "Time series forecasting model that predicts future sales based on historical data and external factors.",
+    date: "2024", // Added date field
+    dateRange: "Jan 2023 - Present", // Added dateRange field
     tags: ["Python", "Prophet", "Time Series", "Forecasting"],
     image: "/placeholder.svg?height=200&width=400",
     link: "#",
