@@ -33,7 +33,11 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
             </p>
 
             <div className="space-y-4">
-              <div className="flex items-center gap-3">
+              {/* Email contact - now clickable */}
+              <a
+                href="mailto:matthewraylee.work@gmail.com"
+                className="flex items-center gap-3 hover:text-primary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                   <Mail className="h-5 w-5" />
                 </div>
@@ -43,9 +47,15 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                     matthewraylee.work@gmail.com
                   </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-3">
+              {/* LinkedIn contact - now clickable */}
+              <a
+                href="https://linkedin.com/in/matthewraylee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-primary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                   <Linkedin className="h-5 w-5" />
                 </div>
@@ -55,9 +65,15 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                     linkedin.com/in/matthewraylee
                   </p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-3">
+              {/* GitHub contact - now clickable */}
+              <a
+                href="https://github.com/matthewraylee"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 hover:text-primary transition-colors"
+              >
                 <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                   <Github className="h-5 w-5" />
                 </div>
@@ -67,7 +83,7 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
                     github.com/matthewraylee
                   </p>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
 

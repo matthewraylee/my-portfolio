@@ -75,59 +75,84 @@ The project utilizes YOLOv8, a state-of-the-art object detection model, trained 
   },
   {
     id: 2,
-    title: "EV Dashboard",
+    title: "EV Adoption Dashboard",
     description:
-      "Machine learning model that predicts customer behavior using historical transaction data.",
-    date: "2022", // Added date field
-    dateRange: "Jun - Aug 2022", // Added dateRange field
-    tags: ["Python", "Scikit-learn", "SQL", "Machine Learning"],
-    image: "/placeholder.svg?height=200&width=400",
-    link: "#",
+      "Interactive visualization dashboard tracking electric vehicle adoption and charging infrastructure trends in Washington State",
+    date: "2024",
+    dateRange: "Nov 2024 - Present",
+    tags: [
+      "Python",
+      "Tableau",
+      "SQL",
+      "Data Visualization",
+      "Dashboard",
+      "Geospatial Analysis",
+    ],
+    image: "https://picsum.photos/seed/evdashboard/1200/675",
+    link: "https://github.com/matthewraylee/ev-dashboard",
     // Additional details for expanded view
-    fullDescription: `This predictive analytics tool leverages machine learning algorithms to forecast customer behavior based on historical transaction data.
+    fullDescription: `The EV Adoption Dashboard provides a comprehensive view of electric vehicle (EV) adoption and charging infrastructure throughout Washington State. This interactive visualization tool allows users to explore trends in EV registrations, analyze the distribution of charging stations by type and location, and understand the relationship between vehicle types and available infrastructure.
 
-The system analyzes patterns in customer purchases, website interactions, and support inquiries to predict future actions, enabling proactive business strategies.`,
+Developed using Python and SQL for data extraction and processing, with Tableau for visualization, the dashboard integrates multiple data sources to present key metrics and trends, enabling policymakers, researchers, and the public to make data-driven decisions about EV infrastructure planning and investment.`,
     problem:
-      "The company needed to anticipate customer actions to optimize marketing efforts and reduce churn.",
+      "As electric vehicle adoption accelerates, there's a critical need to understand how charging infrastructure is keeping pace. Stakeholders lack accessible tools to visualize the current state of EV adoption and charging capacity across different regions.",
     solution:
-      "Built a machine learning model that analyzes historical data to predict future customer behavior with high accuracy.",
+      "Developed an interactive dashboard that integrates EV registration data with charging station information, providing filterable visualizations by county, charger type, and vehicle make to identify infrastructure gaps.",
     outcome:
-      "Increased customer retention by 25% and improved marketing ROI by targeting high-probability conversions.",
+      "Created a comprehensive visualization tool that reveals key metrics like the 1.86 EV-to-charger ratio and highlights regional differences in EV infrastructure, helping inform future charging station deployment strategies.",
     technologies: [
-      { name: "Python", description: "Core programming language" },
-      { name: "Scikit-learn", description: "Machine learning library" },
-      { name: "Pandas", description: "Data manipulation and analysis" },
-      { name: "SQL", description: "Database management" },
-      { name: "Docker", description: "Containerization for deployment" },
+      {
+        name: "Python",
+        description: "Used for data collection, cleaning, and preprocessing",
+      },
+      {
+        name: "Tableau",
+        description:
+          "Data visualization platform for creating interactive dashboard elements",
+      },
+      {
+        name: "SQL",
+        description: "Database querying for data extraction and transformation",
+      },
+      {
+        name: "PostgreSQL",
+        description:
+          "Database system for storing and managing EV registration and charger data",
+      },
+      {
+        name: "Pandas",
+        description: "Python library for data manipulation and analysis",
+      },
     ],
     gallery: [
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Prediction Dashboard",
-      },
-      {
-        type: "video",
-        videoId: "ML8Hl4eFy3M", // Example YouTube video ID - replace with your actual video ID
-        caption: "Model Training Process",
+        url: "/Projects/EVDashboard/overview.webp",
+        caption: "Dashboard Overview with Key Metrics",
       },
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Model Performance Metrics",
+        url: "/Projects/EVDashboard/map-view.webp",
+        caption: "Charger Distribution Map by County",
       },
       {
         type: "image",
-        url: "/placeholder.svg?height=400&width=600",
-        caption: "Customer Segmentation View",
+        url: "/Projects/EVDashboard/ev-trends.webp",
+        caption: "EV Adoption Trends Over Time (2010-2024)",
+      },
+      {
+        type: "image",
+        url: "/Projects/EVDashboard/vehicle-models.webp",
+        caption: "Top EV Models in Washington State",
       },
     ],
     features: [
-      "Customer churn prediction",
-      "Purchase propensity scoring",
-      "Automated model retraining",
-      "Segment-based recommendations",
-      "Anomaly detection",
+      "Interactive filtering by county, charger type, and vehicle make",
+      "Geographic visualization of charging infrastructure density",
+      "Time-series analysis of EV adoption trends since 2010",
+      "Comparative metrics including EV-to-charger ratio and charger type distribution",
+      "Detailed breakdown of EV registrations by vehicle model",
+      "Responsive design for accessibility across devices",
     ],
   },
   {
@@ -345,68 +370,99 @@ export const skills = {
 
 export const workExperience = [
   {
-    title: "Senior Data Analyst",
-    company: "Tech Company Inc.",
-    period: "Jan 2021 - Present",
+    title: "Data Center Technician",
+    company: "Redapt",
+    location: "Seattle, WA",
+    description:
+      "Provides end-to-end technology solutions spanning from datacenter infrastructure to cloud implementations.",
+    period: "Nov 2023 - Apr 2024",
     responsibilities: [
-      "Led a team of 3 analysts in developing dashboards that increased decision-making efficiency by 30%",
-      "Implemented ETL processes that reduced data processing time by 40%",
-      "Collaborated with stakeholders to define KPIs and metrics for business performance",
+      "Configured server BIOS and RAID to run through PXE programming in Linux environment to reduce deployment time by 65%",
+      "Troubleshot and tested 20 network devices through Linux environment on a weekly basis while capturing logs for QA team, achieving a success rate of 90%",
+      "Collaborated effectively with QA and Assembly teams to achieve a 60% improvement in efficiency and quality control",
+      "Created training documentation improving Data Center Technician transition experience, resulting in 300% increase in onboarding efficiency",
     ],
   },
   {
-    title: "Business Intelligence Analyst",
-    company: "Data Solutions Co.",
-    period: "Mar 2018 - Dec 2020",
+    title: "Software Developer Intern",
+    company: "Amtrak",
+    location: "Washington, DC",
+    period: "Feb 2023 - May 2023",
     responsibilities: [
-      "Designed and maintained BI solutions using Tableau and Power BI",
-      "Developed SQL queries and stored procedures for data extraction",
-      "Created documentation and training materials for business users",
+      "Improved cloud management process for a team of 15 by constantly updating 100+ APIs, resulting in lowered billing costs and increased efficiency",
+      "Tested and ensured secure access to multiple APIs using OAuth2.0, collaborating with security and development teams, reducing access time by ~50% and enhancing overall system security",
+      "Performed endpoint tests on 10 APIs weekly using Postman, recording results in MS Excel for escalation to the QA team, improving efficiency by ~60% through streamlined testing processes",
+      "Contributed to daily Agile standup meetings, enhancing team communication and collaboration, which ensured consistent quality work and increased project efficiency by 25%",
     ],
   },
   {
-    title: "Junior Data Analyst",
-    company: "Analytics Startup",
-    period: "Jun 2016 - Feb 2018",
+    title: "Software Developer Intern",
+    company: "Amtrak",
+    location: "Washington, DC",
+    period: "May 2021 - Aug 2021",
     responsibilities: [
-      "Performed data cleaning and preprocessing for analysis",
-      "Created reports and visualizations using Python and Excel",
-      "Assisted in developing predictive models for customer behavior",
+      "Leveraged MuleSoft products to perform autoscaling and upgrades of 10 APIs weekly, improving traffic management and reducing cost",
+      "Executed upgrades on 100+ APIs using BitBucket, Jenkins and MuleSoft products to maintain version control",
+      "Actively participated in weekly API meetings with the DevOps team, presenting progress updates and resolving roadblocks",
+    ],
+  },
+  {
+    title: "Web Developer Intern",
+    company: "PT. Enseval Putera Megatrading",
+    location: "Jakarta, Indonesia",
+    description:
+      "One of the largest distribution and supply of pharmaceutical products and raw materials in Indonesia.",
+    period: "Aug 2019 - Sep 2019",
+    responsibilities: [
+      "Improved registration process through implementing user verification feature using React and C#, resulting in a 30% boost in user registration and 17% increase in overall UX satisfaction",
+      "Collaborated with mentors on web development and hosting, gaining valuable hands-on experience in web development technologies",
+    ],
+  },
+  {
+    title: "Web Developer Intern",
+    company: "KlikDokter",
+    location: "Jakarta, Indonesia",
+    description:
+      "Digital healthcare platform that offers information, telemedicine, and consulting services.",
+    period: "May 2018 - Sep 2018",
+    responsibilities: [
+      "Designed and implemented a user-centered UX attendance tracking system using Python, HTML, CSS, and JavaScript, to collect and analyze employee attendance data for Indonesia's leading digital healthcare platform",
+      "Utilized Postman for in-depth debugging of HTTP requests, significantly improving reliability and efficiency of web service integrations",
     ],
   },
 ];
 
 export const education = [
   {
-    degree: "Master of Science in Data Science",
-    institution: "University of Technology",
-    period: "2014 - 2016",
+    degree: "Master of Science in Information Systems",
+    institution: "University of Washington - Foster School of Business",
+    period: "2024 - 2025",
     description:
-      "Specialized in machine learning and statistical analysis. Thesis on predictive modeling for financial markets.",
+      "Focusing on business intelligence, data analytics, and cloud computing with an emphasis on technology management and enterprise solutions.",
   },
   {
     degree: "Bachelor of Science in Computer Science",
-    institution: "State University",
-    period: "2010 - 2014",
+    institution: "University of Maryland at College Park",
+    period: "2020 - 2023",
     description:
-      "Graduated with honors. Focused on database systems and software development.",
+      "Core curriculum in algorithms, software engineering, and data structures with specialization in computer vision and application development.",
   },
 ];
 
 export const certifications = [
-  {
-    name: "AWS Certified Data Analytics - Specialty",
-    issuer: "Amazon Web Services",
-    year: "2022",
-  },
-  {
-    name: "Tableau Desktop Certified Professional",
-    issuer: "Tableau",
-    year: "2021",
-  },
-  {
-    name: "Microsoft Certified: Data Analyst Associate",
-    issuer: "Microsoft",
-    year: "2020",
-  },
+  // {
+  //   name: "AWS Certified Data Analytics - Specialty",
+  //   issuer: "Amazon Web Services",
+  //   year: "2022",
+  // },
+  // {
+  //   name: "Tableau Desktop Certified Professional",
+  //   issuer: "Tableau",
+  //   year: "2021",
+  // },
+  // {
+  //   name: "Microsoft Certified: Data Analyst Associate",
+  //   issuer: "Microsoft",
+  //   year: "2020",
+  // },
 ];

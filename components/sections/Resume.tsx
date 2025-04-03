@@ -65,7 +65,8 @@ const Resume = forwardRef<HTMLDivElement>((_props, ref) => {
               ))}
             </div>
 
-            <h3 className="text-xl font-bold mt-10 mb-4">Certifications</h3>
+            {/* Certification section */}
+            {/* <h3 className="text-xl font-bold mt-10 mb-4">Certifications</h3>
 
             <div className="space-y-4">
               {certifications.map((cert, index) => (
@@ -81,14 +82,20 @@ const Resume = forwardRef<HTMLDivElement>((_props, ref) => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="mt-10 text-center">
-          <Button size="lg">
-            <Download className="mr-2 h-4 w-4" />
-            Download Full Resume
+          <Button size="lg" asChild>
+            <a
+              href="https://drive.google.com/file/d/1cpyXkWEZ8g4GTcwsFVxbh38H9toAj88Z/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Download Full Resume
+            </a>
           </Button>
         </div>
       </motion.div>
