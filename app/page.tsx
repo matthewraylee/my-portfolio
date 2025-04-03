@@ -60,6 +60,11 @@ export default function Home() {
     }
   };
 
+  // Create a ref callback function that returns void
+  const setRef = (section: string) => (el: HTMLDivElement | null) => {
+    sectionsRef.current[section] = el;
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header activeSection={activeSection} scrollToSection={scrollToSection} />
@@ -69,15 +74,12 @@ export default function Home() {
       />
 
       <main className="container mx-auto px-4 pt-24 pb-20">
-        <Hero
-          ref={(el) => (sectionsRef.current.home = el)}
-          scrollToSection={scrollToSection}
-        />
-        <About ref={(el) => (sectionsRef.current.about = el)} />
-        <Projects ref={(el) => (sectionsRef.current.projects = el)} />
-        <Skills ref={(el) => (sectionsRef.current.skills = el)} />
-        <Resume ref={(el) => (sectionsRef.current.resume = el)} />
-        <Contact ref={(el) => (sectionsRef.current.contact = el)} />
+        <Hero ref={setRef("home")} scrollToSection={scrollToSection} />
+        <About ref={setRef("about")} />
+        <Projects ref={setRef("projects")} />
+        <Skills ref={setRef("skills")} />
+        <Resume ref={setRef("resume")} />
+        <Contact ref={setRef("contact")} />
       </main>
 
       <Footer />
