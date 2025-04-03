@@ -3,8 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "John Doe | Portfolio",
-  description: "Portfolio website for John Doe - Data Analyst & Developer",
+  title: "Mr. Lee | Portfolio",
+  description: "Portfolio website for Matthew Lee",
 };
 
 export default function RootLayout({
