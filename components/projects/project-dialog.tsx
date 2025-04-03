@@ -56,27 +56,16 @@ interface Technology {
   description: string;
 }
 
-// Changed from named export to default export
 function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  // Add this state and function to the component
+  // Add fullscreen state
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [fullscreenItem, setFullscreenItem] = useState<GalleryItem | null>(
     null
   );
-
-  const openFullscreen = (item: GalleryItem) => {
-    setFullscreenItem(item);
-    setIsFullscreen(true);
-  };
-
-  const closeFullscreen = () => {
-    setIsFullscreen(false);
-    setFullscreenItem(null);
-  };
 
   // Ensure gallery exists and has items
   const hasGallery =
@@ -118,11 +107,22 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
     );
   };
 
+  // Add fullscreen functions
+  const openFullscreen = (item: GalleryItem) => {
+    setFullscreenItem(item);
+    setIsFullscreen(true);
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    setFullscreenItem(null);
+  };
+
   if (!mounted || !isOpen || !project) return null;
 
   // Default gallery item if gallery is empty
   const currentItem = hasGallery
-    ? project.gallery[currentItemIndex]
+    ? (project.gallery?.[currentItemIndex] as GalleryItem)
     : {
         type: "image" as const,
         url: project.image || "/placeholder.svg",
@@ -131,6 +131,14 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
 
   // Function to render the current gallery item based on its type
   const renderGalleryItem = (item: GalleryItem) => {
+    if (!item) {
+      return (
+        <div className="relative w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+          <p className="text-gray-500">No image available</p>
+        </div>
+      );
+    }
+
     if (item.type === "video" && item.videoId) {
       return (
         <div className="relative w-full h-full flex items-center justify-center bg-black">
@@ -146,13 +154,11 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
     } else {
       // Default to image
       return (
-        <div className="relative w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-          <img
-            src={item.url || "/placeholder.svg"}
-            alt={item.caption || "Gallery image"}
-            className="max-h-full max-w-full object-contain"
-          />
-        </div>
+        <img
+          src={item.url || "/placeholder.svg"}
+          alt={item.caption || "Gallery image"}
+          className="w-full h-full object-cover"
+        />
       );
     }
   };
@@ -364,7 +370,7 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
                       <div className="relative h-80 md:h-96 overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
                         {renderGalleryItem(currentItem)}
 
-                        {currentItem.caption && (
+                        {currentItem && currentItem.caption && (
                           <div className="absolute bottom-0 left-0 right-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm p-2 text-center">
                             <p className="text-gray-900 dark:text-white">
                               {currentItem.caption}
@@ -372,60 +378,66 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
                           </div>
                         )}
 
-                        {project.gallery.length > 1 && (
-                          <>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
-                              onClick={prevItem}
-                            >
-                              <ChevronLeft className="h-6 w-6" />
-                            </Button>
+                        {hasGallery &&
+                          project.gallery &&
+                          project.gallery.length > 1 && (
+                            <>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
+                                onClick={prevItem}
+                              >
+                                <ChevronLeft className="h-6 w-6" />
+                              </Button>
 
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
-                              onClick={nextItem}
-                            >
-                              <ChevronRight className="h-6 w-6" />
-                            </Button>
-                          </>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
+                                onClick={nextItem}
+                              >
+                                <ChevronRight className="h-6 w-6" />
+                              </Button>
+                            </>
+                          )}
+
+                        {/* Add fullscreen button - only for images */}
+                        {currentItem && currentItem.type === "image" && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="absolute top-2 right-2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
+                            onClick={() => openFullscreen(currentItem)}
+                          >
+                            <Maximize2 className="h-4 w-4" />
+                            <span className="sr-only">View fullscreen</span>
+                          </Button>
                         )}
-
-                        {/* Add fullscreen button */}
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="absolute top-2 right-2 bg-white/80 dark:bg-gray-900/80 hover:bg-white/90 dark:hover:bg-gray-900/90 backdrop-blur-sm"
-                          onClick={() => openFullscreen(currentItem)}
-                        >
-                          <Maximize2 className="h-4 w-4" />
-                          <span className="sr-only">View fullscreen</span>
-                        </Button>
                       </div>
 
-                      {project.gallery.length > 1 && (
-                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 mt-4">
-                          {project.gallery.map(
-                            (item: GalleryItem, index: number) => (
-                              <div
-                                key={index}
-                                className={cn(
-                                  "h-20 overflow-hidden rounded-md cursor-pointer border-2 bg-gray-100 dark:bg-gray-800",
-                                  currentItemIndex === index
-                                    ? "border-primary"
-                                    : "border-transparent"
-                                )}
-                                onClick={() => setCurrentItemIndex(index)}
-                              >
-                                {renderGalleryThumbnail(item, index)}
-                              </div>
-                            )
-                          )}
-                        </div>
-                      )}
+                      {hasGallery &&
+                        project.gallery &&
+                        project.gallery.length > 1 && (
+                          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 mt-4">
+                            {project.gallery.map(
+                              (item: GalleryItem, index: number) => (
+                                <div
+                                  key={index}
+                                  className={cn(
+                                    "h-20 overflow-hidden rounded-md cursor-pointer border-2 bg-gray-100 dark:bg-gray-800",
+                                    currentItemIndex === index
+                                      ? "border-primary"
+                                      : "border-transparent"
+                                  )}
+                                  onClick={() => setCurrentItemIndex(index)}
+                                >
+                                  {renderGalleryThumbnail(item, index)}
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
                     </TabsContent>
                   )}
 
@@ -524,7 +536,7 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
         document.body
       )}
 
-      {/* Fullscreen modal */}
+      {/* Fullscreen modal for images */}
       {isFullscreen &&
         fullscreenItem &&
         createPortal(
@@ -546,26 +558,11 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
               className="max-h-screen max-w-screen overflow-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {fullscreenItem.type === "video" && fullscreenItem.videoId ? (
-                <div
-                  className="relative w-full"
-                  style={{ maxWidth: "90vw", height: "90vh" }}
-                >
-                  <iframe
-                    src={`https://www.youtube.com/embed/${fullscreenItem.videoId}?autoplay=1&rel=0`}
-                    title={fullscreenItem.caption || "YouTube video"}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full"
-                  ></iframe>
-                </div>
-              ) : (
-                <img
-                  src={fullscreenItem.url || "/placeholder.svg"}
-                  alt={fullscreenItem.caption || "Gallery image"}
-                  className="max-h-[90vh] max-w-[90vw] object-contain"
-                />
-              )}
+              <img
+                src={fullscreenItem.url || "/placeholder.svg"}
+                alt={fullscreenItem.caption || "Gallery image"}
+                className="max-h-[90vh] max-w-[90vw] object-contain"
+              />
 
               {fullscreenItem.caption && (
                 <div className="text-white text-center mt-2 p-2">
@@ -580,5 +577,4 @@ function ProjectDialog({ project, isOpen, onClose }: ProjectDialogProps) {
   );
 }
 
-// Add default export
 export default ProjectDialog;
