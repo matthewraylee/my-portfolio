@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-
+import { load } from "recaptcha-v3";
 import { forwardRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -46,12 +46,19 @@ const Contact = forwardRef<HTMLDivElement>((_props, ref) => {
     setFormStatus("idle");
 
     try {
+      // Load reCAPTCHA and execute
+      const recaptcha = await load(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!);
+      const token = await recaptcha.execute("contact_form");
+
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          recaptchaToken: token,
+        }),
       });
 
       // Parse the response body

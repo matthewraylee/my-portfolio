@@ -23,11 +23,45 @@ const RATE_LIMIT_WINDOW = 15 * 60 * 1000; // 15 minutes
 const MAX_SUBMISSIONS = 3; // Max 3 submissions per window
 
 export async function POST(request: Request) {
-  // Get client IP (works with Vercel and most hosting platforms)
-  const clientIp = request.headers.get("x-forwarded-for") || "unknown";
-
   try {
-    const { name, email, subject, message } = await request.json();
+    const { recaptchaToken, name, email, subject, message } =
+      await request.json();
+
+    // Verify reCAPTCHA
+    const verifyResponse = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
+
+    const verifyResult = await verifyResponse.json();
+
+    // Log detailed verification results
+    console.log("reCAPTCHA Verification:", {
+      success: verifyResult.success,
+      score: verifyResult.score,
+      action: verifyResult.action,
+      hostname: verifyResult.hostname,
+    });
+
+    // More lenient bot detection
+    if (
+      !verifyResult.success ||
+      (verifyResult.score && verifyResult.score < 0.3)
+    ) {
+      return NextResponse.json(
+        { error: "Bot detection failed", details: verifyResult },
+        { status: 403 }
+      );
+    }
+
+    // Get client IP (works with Vercel and most hosting platforms)
+    const clientIp = request.headers.get("x-forwarded-for") || "unknown";
 
     // Comprehensive validation with detailed logging
     console.log("Received data:", { name, email, subject, message });
