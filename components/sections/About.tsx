@@ -19,6 +19,19 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
         <h2 className="text-3xl font-bold mb-2">About Me</h2>
         <div className="w-20 h-1 bg-primary mb-8"></div>
 
+        {/* Mobile image - shown only on small screens */}
+        <div className="md:hidden mb-8">
+          <div className="relative overflow-hidden rounded-lg border-4 border-primary/20 shadow-xl w-48 h-64 mx-auto">
+            <Image
+              src="/matthew_headshot.jpeg"
+              alt="Matthew Lee"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-10">
           <div>
             <p className="text-lg mb-4">
@@ -82,13 +95,14 @@ const About = forwardRef<HTMLDivElement>((_props, ref) => {
             </div>
           </div>
 
-          <div className="flex justify-center items-center">
-            <div className="relative overflow-hidden rounded-lg border-4 border-primary/20 shadow-xl w-86">
+          {/* Desktop image - hidden on small screens, visible on md and up */}
+          <div className="hidden md:flex justify-center items-center">
+            <div className="relative overflow-hidden rounded-lg border-4 border-primary/20 shadow-xl w-80">
               <Image
                 src="/matthew_headshot.jpeg"
                 alt="Matthew Lee"
-                width={400}
-                height={500}
+                width={320}
+                height={400}
                 className="object-cover"
                 priority
               />
