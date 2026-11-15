@@ -117,22 +117,24 @@ const Projects = forwardRef<HTMLDivElement>((_props, ref) => {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          {!showAllProjects && projects.length > 3 ? (
-            <Button size="lg" onClick={() => setShowAllProjects(true)}>
-              View All Projects
-              <ChevronRight className="ml-2 h-4 w-4" />
-            </Button>
-          ) : (
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={() => setShowAllProjects(false)}
-            >
-              Show Featured Projects
-            </Button>
-          )}
-        </div>
+        {projects.length > 3 && (
+          <div className="mt-10 text-center">
+            {!showAllProjects ? (
+              <Button size="lg" onClick={() => setShowAllProjects(true)}>
+                View All Projects
+                <ChevronRight className="ml-2 h-4 w-4" />
+              </Button>
+            ) : (
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => setShowAllProjects(false)}
+              >
+                Show Featured Projects
+              </Button>
+            )}
+          </div>
+        )}
       </motion.div>
 
       {selectedProject && (

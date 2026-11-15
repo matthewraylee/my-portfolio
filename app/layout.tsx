@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
+import EditionBanner from "@/components/layout/EditionBanner";
 
 export const metadata: Metadata = {
   title: "Mr. Lee | Portfolio",
   description: "Portfolio website for Matthew Lee",
+  robots: { index: false, follow: false },
   icons: {
     icon: [
       { url: "/MattLogo_Black.png", sizes: "any" }, // Default favicon.ico
@@ -29,6 +31,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <EditionBanner />
           {children}
         </ThemeProvider>
         <Analytics />

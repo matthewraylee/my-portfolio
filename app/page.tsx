@@ -73,7 +73,7 @@ export default function Home() {
         scrollToSection={scrollToSection}
       />
 
-      <main className="container mx-auto px-4 pt-24 pb-20">
+      <main className="container mx-auto px-4 pt-36 sm:pt-32 pb-20">
         <Hero ref={setRef("home")} scrollToSection={scrollToSection} />
         <About ref={setRef("about")} />
         <Projects ref={setRef("projects")} />

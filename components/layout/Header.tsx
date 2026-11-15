@@ -14,20 +14,12 @@ interface HeaderProps {
 
 const Header = ({ activeSection, scrollToSection }: HeaderProps) => {
   const sections = ["home", "about", "projects", "skills", "resume", "contact"];
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  // For debugging
-  useEffect(() => {
-    if (mounted) {
-      console.log("Current theme:", theme);
-      console.log("Resolved theme:", resolvedTheme);
-    }
-  }, [mounted, theme, resolvedTheme]);
 
   // Use a more direct approach to determine which logo to show
   const logoSrc =
@@ -36,7 +28,7 @@ const Header = ({ activeSection, scrollToSection }: HeaderProps) => {
       : "/MattLogo_Black.png";
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
+    <header className="fixed top-12 sm:top-8 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="cursor-pointer" onClick={() => scrollToSection("home")}>
           {mounted ? (

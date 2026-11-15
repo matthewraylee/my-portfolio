@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+> **This is the frozen Edition No. 00 archive branch, deployed to its own Vercel project at 2025.matthewraylee.com. Never merge it into main. Only small fixes go here.**
+
 ## Project overview
 
 Personal portfolio site, deployed on Vercel. **Pushing to `main` deploys the live site.**
@@ -8,18 +10,15 @@ Personal portfolio site, deployed on Vercel. **Pushing to `main` deploys the liv
 - Next.js 15 (App Router) + React 19 + TypeScript
 - Tailwind CSS 4, shadcn/ui-style components on Radix UI, `next-themes` for light/dark mode
 - framer-motion, tsparticles, `react-type-animation` for visuals
-- Contact form: Next.js API route → Nodemailer (Gmail SMTP), protected by reCAPTCHA v3
-- Secrets live in `.env.local` (gitignored): `EMAIL_USER`, `EMAIL_APP_PASSWORD`, `RECAPTCHA_SECRET_KEY`
 
 **Folder structure**
 - `app/` — `layout.tsx` (root layout), `page.tsx` (single-page site), `data.ts` (project/portfolio content), `globals.css`
-- `app/api/contact/route.ts` — contact form endpoint (validation, rate limiting, email send)
-- `app/test/` — test page; `middleware.ts` redirects `/test` to `/`
-- `components/sections/` — page sections (Hero, About, Projects, Skills, Resume, Contact)
-- `components/layout/` — Header, Footer, MobileNavigation
+- `middleware.ts` — redirects `/test` to `/`
+- `components/sections/` — page sections (Hero, About, Projects, Skills, Resume, Contact with a mailto link)
+- `components/layout/` — Header, Footer, MobileNavigation, EditionBanner (archive notice shown on every page)
 - `components/ui/` — shared UI primitives (button, card, dialog, tabs, toast, …)
 - `components/projects/`, `components/background/` — project dialog, background effects
-- `lib/utils.ts` — `cn()` class helper; `utils/` — misc scripts
+- `lib/utils.ts` — `cn()` class helper
 - `public/` — static assets (logo, `Projects/` screenshots)
 
 **Commands:** `npm run dev`, `npm run build`, `npm run lint` (lint is skipped during `build` via `next.config.ts`).
