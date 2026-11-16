@@ -12,7 +12,7 @@ export function OutsideWork() {
       aria-labelledby="outside-work-label"
       className="wrap section-space"
     >
-      <SectionLabel id="outside-work-label">outside work</SectionLabel>
+      <SectionLabel id="outside-work-label">{outsideWork.label}</SectionLabel>
 
       <Placeholder
         alt={outsideWork.alt}
@@ -27,7 +27,7 @@ export function OutsideWork() {
         />
         <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-6 p-6 lg:flex-row lg:items-end lg:justify-between lg:p-12">
           <p className="type-h2 max-w-[560px] text-fg">{outsideWork.line}</p>
-          <ButtonLink href="/outside-work">take a look</ButtonLink>
+          <ButtonLink href={outsideWork.cta.href}>{outsideWork.cta.label}</ButtonLink>
         </div>
       </Placeholder>
     </section>

@@ -9,7 +9,7 @@ export function Contact() {
 
   return (
     <section id="contact" aria-labelledby="contact-label" className="wrap section-space">
-      <SectionLabel id="contact-label">contact</SectionLabel>
+      <SectionLabel id="contact-label">{contact.label}</SectionLabel>
 
       <h3 className="type-talk">{contact.heading}</h3>
 
@@ -21,11 +21,11 @@ export function Contact() {
       </a>
 
       <div className="mt-4 flex flex-wrap items-center gap-x-7 text-[16px]">
-        <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className={textLink}>
-          LinkedIn
+        <a href={links.linkedin.href} target="_blank" rel="noopener noreferrer" className={textLink}>
+          {links.linkedin.label}
         </a>
-        <a href={links.github} target="_blank" rel="noopener noreferrer" className={textLink}>
-          GitHub
+        <a href={links.github.href} target="_blank" rel="noopener noreferrer" className={textLink}>
+          {links.github.label}
         </a>
         <span className="hidden text-muted lg:inline">{status.location}</span>
       </div>

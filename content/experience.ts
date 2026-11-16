@@ -1,5 +1,13 @@
-// Placeholder copy from the design renders. Open items: FitNxt title
-// (Volunteer Developer or AI Solutions Engineer) and Redapt title.
+// Experience rows, plus the two schools for the education row in About
+// (Education moved into About on Nov 15, so it isn't shown twice).
+//
+// Open items: FitNxt title (Volunteer Developer or AI Solutions Engineer)
+// and Redapt title.
+//
+// Education rules: no school logos, no awards or student activities
+// (GarbEdge's MSIS Case Competition win appears only on the GarbEdge project
+// page), and Green River College is left out. In the later Indonesian
+// version, the degrees are labeled S2 and S1.
 
 export type ExperienceRow = {
   years: string;
@@ -8,8 +16,11 @@ export type ExperienceRow = {
   location: string;
 };
 
-export type EducationRow = {
+export type EducationEntry = {
+  /** Shown in the small label style, e.g. "m.s. information systems · 2025". */
+  degree: string;
   year: string;
+  /** Set large. */
   school: string;
   detail: string;
 };
@@ -47,16 +58,17 @@ export const experience: ExperienceRow[] = [
   },
 ];
 
-export const education: EducationRow[] = [
+export const education: EducationEntry[] = [
   {
+    degree: "m.s. information systems",
     year: "2025",
-    school: "University of Washington, Foster School of Business",
-    detail:
-      "M.S. Information Systems. Won the MSIS Case Competition with GarbEdge.",
+    school: "University of Washington",
+    detail: "Foster School of Business, Seattle",
   },
   {
+    degree: "b.s. computer science",
     year: "2023",
-    school: "University of Maryland, College Park",
-    detail: "B.S. Computer Science, minor in Entrepreneurship",
+    school: "University of Maryland",
+    detail: "College Park · minor in Entrepreneurship",
   },
 ];

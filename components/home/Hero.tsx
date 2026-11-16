@@ -28,13 +28,15 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-6">
-            <ButtonLink href="/#work">see my work</ButtonLink>
+            <ButtonLink href={hero.primaryCta.href}>
+              {hero.primaryCta.label}
+            </ButtonLink>
             <ButtonLink
-              href="/#contact"
+              href={hero.secondaryCta.href}
               variant="secondary"
               className="self-center sm:self-auto"
             >
-              get in touch
+              {hero.secondaryCta.label}
             </ButtonLink>
           </div>
 

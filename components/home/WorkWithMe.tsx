@@ -12,7 +12,7 @@ export function WorkWithMe() {
       aria-labelledby="work-with-me-label"
       className="wrap section-space"
     >
-      <SectionLabel id="work-with-me-label">work with me</SectionLabel>
+      <SectionLabel id="work-with-me-label">{workWithMe.label}</SectionLabel>
 
       <h3 className="type-h2 max-w-[760px]">{workWithMe.heading}</h3>
 
@@ -37,7 +37,7 @@ export function WorkWithMe() {
         <p className="text-[17px] leading-[1.5] text-muted">
           {workWithMe.referral}
         </p>
-        <ButtonLink href={`mailto:${email}`}>start a conversation</ButtonLink>
+        <ButtonLink href={`mailto:${email}`}>{workWithMe.cta}</ButtonLink>
       </div>
     </section>
   );

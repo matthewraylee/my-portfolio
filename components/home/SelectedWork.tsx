@@ -3,22 +3,34 @@ import { ArrowRight } from "lucide-react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { featuredProjects } from "@/content/projects";
+import { site } from "@/content/site";
+
+const allWorkClass =
+  "inline-flex min-h-11 items-center text-[15px] text-accent hover:underline";
 
 export function SelectedWork() {
+  const { selectedWork } = site;
+  const allWork = (
+    <>
+      {selectedWork.allWork.label}&nbsp;→
+    </>
+  );
+
   return (
     <section id="work" aria-labelledby="work-label" className="wrap section-space">
       <SectionLabel
         id="work-label"
         aside={
+          // Desktop: in the label row. Mobile: below the rows (see the end).
           <Link
-            href="/work"
-            className="-mb-3 inline-flex min-h-11 items-center text-[15px] text-accent hover:underline"
+            href={selectedWork.allWork.href}
+            className={`${allWorkClass} -mb-3 hidden lg:inline-flex`}
           >
-            All work&nbsp;→
+            {allWork}
           </Link>
         }
       >
-        selected work
+        {selectedWork.label}
       </SectionLabel>
 
       {/* Mobile: rows with an 84px thumbnail. Desktop: three cards. */}
@@ -30,7 +42,7 @@ export function SelectedWork() {
           return (
             <li
               key={project.slug}
-              className="relative flex gap-4 border-b border-line py-6 first:pt-0 lg:flex-col lg:gap-0 lg:overflow-hidden lg:rounded-md lg:border lg:bg-surface lg:py-0 lg:first:pt-0"
+              className="relative flex gap-4 border-b border-line py-5 first:pt-0 lg:flex-col lg:gap-0 lg:overflow-hidden lg:rounded-md lg:border lg:bg-surface lg:py-0 lg:first:pt-0"
             >
               <Placeholder
                 alt={project.alt}
@@ -57,17 +69,17 @@ export function SelectedWork() {
                   </Link>
                 </h3>
 
-                <p className="mt-2 text-[16px] leading-[1.55] text-muted lg:mt-3">
+                <p className="mt-1.5 text-[15px] leading-[1.55] text-muted lg:mt-3 lg:text-[16px]">
                   {project.summary}
                 </p>
 
-                <p className="mt-3 text-[14px] text-muted lg:hidden">{meta}</p>
+                <p className="mt-2 text-[13px] text-muted lg:hidden">{meta}</p>
 
                 <span
                   aria-hidden="true"
                   className="mt-4 hidden items-center gap-2 text-[15px] text-accent lg:inline-flex"
                 >
-                  Read the story
+                  {selectedWork.readMore}
                   <ArrowRight size={16} strokeWidth={1.75} />
                 </span>
               </div>
@@ -75,6 +87,13 @@ export function SelectedWork() {
           );
         })}
       </ul>
+
+      <Link
+        href={selectedWork.allWork.href}
+        className={`${allWorkClass} mt-4 lg:hidden`}
+      >
+        {allWork}
+      </Link>
     </section>
   );
 }
