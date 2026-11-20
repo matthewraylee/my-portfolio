@@ -24,9 +24,9 @@ export function About() {
 
         <ul>
           {about.points.map((point) => (
-            <li key={point.label} className="border-t border-line pb-5 pt-[18px] lg:py-6">
+            <li key={point.label} className="border-t border-line pb-3.5 pt-3 lg:py-6">
               <h3 className="label">{point.label}</h3>
-              <p className="mt-2 text-[16px] leading-[1.6] text-fg lg:text-[17px]">
+              <p className="mt-1 text-[15px] leading-[1.55] text-fg lg:mt-2 lg:text-[17px] lg:leading-[1.6]">
                 {point.text}
               </p>
             </li>
@@ -48,7 +48,7 @@ export function About() {
               <p className="label">
                 {item.degree} · {item.year}
               </p>
-              <h4 className="mt-1.5 text-[26px] font-extrabold leading-[1.05] tracking-[-0.03em] [font-stretch:115%] lg:text-[34px]">
+              <h4 className="mt-1.5 text-[22px] font-extrabold leading-[1.05] tracking-[-0.03em] [font-stretch:115%] lg:text-[34px]">
                 {item.school}
               </h4>
               <p className="mt-3 text-[16px] leading-[1.5] text-muted">

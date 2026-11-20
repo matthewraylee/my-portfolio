@@ -29,7 +29,7 @@ export const experience: ExperienceRow[] = [
   {
     years: "2025 – 2026",
     org: "Starbucks, Global Supply Chain Solutions",
-    role: "Distribution Analyst, after Logistics Services Representative",
+    role: "Logistics Services Rep. → Distribution Analyst",
     location: "Seattle",
   },
   {

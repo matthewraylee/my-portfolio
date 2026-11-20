@@ -18,7 +18,7 @@ export function SectionLabel({
   return (
     <div
       className={cn(
-        "mb-8 flex items-end justify-between gap-4 border-b border-line pb-4 lg:mb-10",
+        "mb-6 flex items-end justify-between gap-4 border-b border-line pb-3 lg:mb-10 lg:pb-4",
         className
       )}
     >

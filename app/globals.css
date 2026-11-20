@@ -38,6 +38,9 @@
   --ph-b: rgba(120, 132, 145, 0.28);
   --scrim: rgba(13, 16, 19, 0.88);
 
+  /* Soft haze behind the hero cutout */
+  --hero-haze: rgba(24, 95, 165, 0.46);
+
   color-scheme: dark;
 }
 
@@ -69,6 +72,8 @@
   --ph-a: rgba(236, 242, 247, 0.85);
   --ph-b: rgba(150, 190, 228, 0.6);
   --scrim: rgba(220, 226, 231, 0.9);
+
+  --hero-haze: rgba(12, 68, 124, 0.16);
 
   color-scheme: light;
 }
@@ -164,48 +169,150 @@
   box-decoration-break: clone;
 }
 
-/* Small wide lowercase labels */
+/* Small wide lowercase labels: 13px on phones, 12px on desktop */
 @utility label {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
   font-stretch: 125%;
   letter-spacing: 0.24em;
   text-transform: lowercase;
   color: var(--muted);
-}
-
-/* Type scale: mobile / desktop */
-@utility type-h1 {
-  font-size: 44px;
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.035em;
-  font-style: normal;
 
   @media (width >= 64rem) {
-    font-size: 88px;
+    font-size: 12px;
   }
 }
 
+/* Section headlines: one size everywhere, incl. "Let's talk." (Nov 16) */
 @utility type-h2 {
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.03em;
 
   @media (width >= 64rem) {
-    font-size: 52px;
+    font-size: 56px;
   }
 }
 
-@utility type-talk {
-  font-size: 44px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.03em;
+/* ------------------------------------------------------------------
+   Hero (cutout layout A2, Nov 20)
 
-  @media (width >= 64rem) {
-    font-size: 72px;
+   The hero is a size container. The stage's font-size is the H1 size, and
+   it scales with the hero's width (capped at the design size). Every cutout
+   and haze position is in em of that size, and the H1's max-width (in em)
+   locks its line breaks, so the whole composition scales together and the
+   headline always crosses his chest, never his face or neck.
+
+   Phone (390px design): H1 46px over 342px, four lines; cutout 232x292 with
+   its left edge 185px into the content box, top level with the label.
+   Desktop (1440px design): H1 104px over 1200px, two lines; cutout 452x570
+   with its left edge 694px into the content box, top just under the header.
+   ------------------------------------------------------------------ */
+@utility hero {
+  container-type: inline-size;
+  overflow-x: clip;
+}
+
+@utility hero-stage {
+  position: relative;
+  font-size: min(60px, 13.45cqw); /* 46 / 342: 46px on a 390px phone */
+
+  @media (width >= 48rem) {
+    font-size: min(104px, 8.667cqw);
+  }
+}
+
+/* The hero label stays on one line and ends before his head on phones, as
+   in the render (~256px wide at 390). It keeps its 13px size; the tracking
+   is 0.1em on phones (~219px of glyphs + 30 letter gaps) and tightens
+   further only on very narrow screens. Desktop keeps the usual 0.24em. */
+@utility hero-label {
+  white-space: nowrap;
+  letter-spacing: clamp(0px, calc((75cqw - 219px) / 30), 0.1em);
+
+  @media (width >= 48rem) {
+    letter-spacing: 0.24em;
+  }
+}
+
+@utility hero-h1 {
+  position: relative;
+  z-index: 2;
+  font-size: 1em;
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-style: normal;
+  text-wrap: balance;
+  max-width: 7.435em; /* 342 / 46: four lines on a phone */
+
+  @media (width >= 48rem) {
+    line-height: 0.96;
+    letter-spacing: -0.04em;
+    max-width: 11.54em; /* 1200 / 104: two lines on desktop */
+  }
+}
+
+/* Night only: keeps the silver text readable over the light grey hoodie.
+   filter, not text-shadow: with background-clip: text a text-shadow paints
+   over the chrome gradient. */
+.hero-h1 {
+  filter: drop-shadow(0 2px 10px rgba(13, 16, 19, 0.75));
+}
+@media (width >= 48rem) {
+  .hero-h1 {
+    filter: drop-shadow(0 2px 14px rgba(13, 16, 19, 0.75));
+  }
+}
+.light .hero-h1 {
+  filter: none;
+}
+
+@utility hero-cutout {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  left: 4.022em; /* 185 / 46 */
+  top: -0.04em;
+  width: 5.043em; /* 232 / 46 */
+  -webkit-mask-image: linear-gradient(180deg, #000 50%, transparent 78%);
+  mask-image: linear-gradient(180deg, #000 50%, transparent 78%);
+
+  @media (width >= 48rem) {
+    left: 6.673em; /* 694 / 104 */
+    top: -1.077em; /* 112px above the label: just under the header */
+    width: 4.346em; /* 452 / 104 */
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@utility hero-haze {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: 2.9em;
+  top: -1.3em;
+  width: 7.3em;
+  height: 7.3em;
+  background: radial-gradient(closest-side, var(--hero-haze), transparent);
+
+  @media (width >= 48rem) {
+    left: 5.9em;
+    top: -1.6em;
+    width: 5.9em;
+    height: 5.9em;
+  }
+}
+
+/* Left column under the H1 stays clear of the cutout at every width. */
+@utility hero-column {
+  position: relative;
+  z-index: 2;
+
+  @media (width >= 48rem) {
+    max-width: min(620px, calc(57.83cqw - 40px));
   }
 }
 

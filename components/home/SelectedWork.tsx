@@ -4,6 +4,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Placeholder } from "@/components/ui/Placeholder";
 import { featuredProjects } from "@/content/projects";
 import { site } from "@/content/site";
+import { cn } from "@/lib/utils";
 
 const allWorkClass =
   "inline-flex min-h-11 items-center text-[15px] text-accent hover:underline";
@@ -24,7 +25,7 @@ export function SelectedWork() {
           // Desktop: in the label row. Mobile: below the rows (see the end).
           <Link
             href={selectedWork.allWork.href}
-            className={`${allWorkClass} -mb-3 hidden lg:inline-flex`}
+            className={cn(allWorkClass, "-mb-3 hidden lg:inline-flex")}
           >
             {allWork}
           </Link>
@@ -42,7 +43,7 @@ export function SelectedWork() {
           return (
             <li
               key={project.slug}
-              className="relative flex gap-4 border-b border-line py-5 first:pt-0 lg:flex-col lg:gap-0 lg:overflow-hidden lg:rounded-md lg:border lg:bg-surface lg:py-0 lg:first:pt-0"
+              className="relative flex gap-4 border-b border-line py-[18px] first:pt-0 lg:flex-col lg:gap-0 lg:overflow-hidden lg:rounded-md lg:border lg:bg-surface lg:py-0 lg:first:pt-0"
             >
               <Placeholder
                 alt={project.alt}
@@ -59,7 +60,7 @@ export function SelectedWork() {
                   </span>
                 </div>
 
-                <h3 className="mt-1 text-[20px] font-bold leading-tight tracking-[-0.02em] lg:mt-2 lg:text-[26px]">
+                <h3 className="mt-0.5 text-[20px] font-bold leading-tight tracking-[-0.02em] lg:mt-2 lg:text-[24px]">
                   {/* Stretched link: the whole card/row is clickable. */}
                   <Link
                     href={`/work/${project.slug}`}
@@ -69,11 +70,11 @@ export function SelectedWork() {
                   </Link>
                 </h3>
 
-                <p className="mt-1.5 text-[15px] leading-[1.55] text-muted lg:mt-3 lg:text-[16px]">
+                <p className="mt-1 text-[15px] leading-[1.5] text-muted lg:mt-3 lg:text-[16px] lg:leading-[1.55]">
                   {project.summary}
                 </p>
 
-                <p className="mt-2 text-[13px] text-muted lg:hidden">{meta}</p>
+                <p className="mt-1 text-[13px] text-muted lg:hidden">{meta}</p>
 
                 <span
                   aria-hidden="true"
@@ -90,7 +91,7 @@ export function SelectedWork() {
 
       <Link
         href={selectedWork.allWork.href}
-        className={`${allWorkClass} mt-4 lg:hidden`}
+        className={cn(allWorkClass, "mt-4 lg:hidden")}
       >
         {allWork}
       </Link>

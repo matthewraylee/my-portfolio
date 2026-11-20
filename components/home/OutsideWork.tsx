@@ -18,16 +18,18 @@ export function OutsideWork() {
         alt={outsideWork.alt}
         caption={outsideWork.caption}
         captionPosition="top-right"
-        className="aspect-[4/5] rounded-md border border-line lg:aspect-[21/9]"
+        className="aspect-square rounded-md border border-line lg:aspect-[21/9]"
       >
         {/* Dark-to-clear scrim at the bottom */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[var(--scrim)] to-transparent"
         />
-        <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-6 p-6 lg:flex-row lg:items-end lg:justify-between lg:p-12">
+        <div className="absolute inset-x-0 bottom-0 flex flex-col items-stretch gap-6 p-6 lg:flex-row lg:items-end lg:justify-between lg:p-12">
           <p className="type-h2 max-w-[560px] text-fg">{outsideWork.line}</p>
-          <ButtonLink href={outsideWork.cta.href}>{outsideWork.cta.label}</ButtonLink>
+          <ButtonLink href={outsideWork.cta.href} className="w-full lg:w-auto">
+            {outsideWork.cta.label}
+          </ButtonLink>
         </div>
       </Placeholder>
     </section>

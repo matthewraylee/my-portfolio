@@ -44,12 +44,16 @@ export const site = {
     label: "supply chains · data · systems",
     headline: "I help businesses modernize how they run.",
     subhead:
-      "Supply chains, data, and the systems behind them. Most recently at Starbucks, supporting international customer accounts across the US, Canada, and Asia.",
+      "Dashboards, internal tools, and AI features. Most recently in supply chain at Starbucks, working with accounts across the US, Canada, and Asia.",
     primaryCta: { label: "see my work", href: "/#work" },
     secondaryCta: { label: "get in touch", href: "/#contact" },
-    cover: {
-      caption: "[Your photo, soft focus]",
-      alt: "Matthew Ray Lee",
+    // Placeholder cutout (Nov 20). Replace with one cut from the original,
+    // full-size Foster photo before launch.
+    cutout: {
+      src: "/images/hero/matthew-cutout.png",
+      width: 1160,
+      height: 1460,
+      alt: "Matthew Ray Lee in a grey hoodie, arms crossed, smiling",
     },
   },
 
@@ -88,18 +92,26 @@ export const site = {
   workWithMe: {
     label: "work with me",
     heading: "For businesses that have outgrown their spreadsheets.",
+    // Three lines per card (Nov 16). `project` is the slug of the project page
+    // the card links to; null means a plain box.
     offers: [
       {
         title: "Dashboards",
-        text: "Replace manual reports and logs with views that update themselves.",
+        outcome: "Know what's off before the weekly meeting.",
+        body: "Tableau or Power BI views of your KPIs and exceptions, built from the data you already have.",
+        project: "discrepancy-dashboard",
       },
       {
         title: "Internal tools",
-        text: "Simple systems for orders, inventory, and operations, built around how your team already works.",
+        outcome: "Stop running the business from one person's spreadsheet.",
+        body: "Simple systems for orders, inventory, and customers, built around how your team already works.",
+        project: null,
       },
       {
         title: "AI features",
-        text: "Chatbots and automations where they save real time.",
+        outcome: "Take repetitive questions off your team's plate.",
+        body: "Chatbots and assistants that handle the routine work, with a person still checking the output.",
+        project: "fitnxt-chatbot",
       },
     ],
     referral: "If someone pointed you here, mention them when you write.",
@@ -123,6 +135,13 @@ export const site = {
   contact: {
     label: "contact",
     heading: "Let's talk.",
+    // Shown only when features.whatsapp is on. Number: country code, no plus
+    // sign, spaces or dashes (e.g. "62812…"). Not settled yet.
+    whatsapp: {
+      label: "WhatsApp",
+      number: "",
+      message: "Hi Matthew, I found you through matthewraylee.com.",
+    },
   },
 
   notFound: {

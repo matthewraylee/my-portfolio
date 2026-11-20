@@ -32,7 +32,7 @@ export function Placeholder({
             "absolute z-10 text-[12px] leading-snug tracking-[0.04em] text-muted",
             captionPosition === "bottom-left" && "bottom-3 left-4 right-4",
             captionPosition === "top-right" &&
-              "top-4 right-5 left-5 text-right",
+              "top-4 right-5 left-5 text-left lg:text-right",
             captionClassName
           )}
         >
