@@ -1,18 +1,26 @@
 import type { Project } from "./types";
 
-// Third highlight: pending confirmation with the Brand & Content chat.
-// To feature GarbEdge instead, set `featured: false` here and add a
-// garbedge.ts with `featured: true, order: 3`.
+// Not published yet: shows nowhere (lists, pages, sitemap) until
+// `published` is true and the copy is in.
 export const seasonalLaunch: Project = {
   slug: "seasonal-launch",
+  published: false,
+  date: "2026-08",
   title: "Seasonal launch process",
   org: "Starbucks",
   year: "2026",
-  summary:
-    "Ran a new seasonal program outside the standard order flow, and left a process the team can reuse.",
-  featured: true,
-  order: 2,
-  image: null,
-  alt: "Flow diagram of the seasonal launch",
-  placeholder: "[Flow diagram of the launch]",
+  cardLine:
+    "A seasonal launch run outside the usual order system, and a process the team can reuse.",
+  // TODO(Matthew): copy coming (summary, role, result, problem, approach, result, image alt)
+  summary: "",
+  spec: {
+    role: "",
+    tools: ["Oracle", "a shared tracker"],
+    result: "",
+  },
+  problem: [],
+  approach: [],
+  result: [],
+  image: { src: null, alt: "" },
+  tags: ["supply-chain", "operations"],
 };

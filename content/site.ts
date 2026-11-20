@@ -4,8 +4,16 @@
 // The status line and the About copy are the parts that change when plans
 // change. Each lives here, in exactly one place.
 
+/**
+ * The homepage's Selected work, in order (01–03 come from the position).
+ * Exactly three published project slugs; the build fails otherwise.
+ * Repositioning means editing this line and nothing else.
+ */
+export const featuredWork = ["discrepancy-dashboard", "fitnxt-chatbot", "garbedge"] as const;
+
 export const site = {
   name: "Matthew Ray Lee",
+  url: "https://matthewraylee.com",
   headerLabel: "matthew ray lee",
   email: "matthewraylee.work@gmail.com",
   links: {
@@ -16,7 +24,7 @@ export const site = {
 
   // Header and mobile menu. `workWithMe` is hidden when its flag is off.
   nav: [
-    { key: "work", label: "Work", href: "/#work" },
+    { key: "work", label: "Work", href: "/work" },
     { key: "about", label: "About", href: "/#about" },
     { key: "workWithMe", label: "Work with me", href: "/#work-with-me" },
     { key: "outsideWork", label: "Outside work", href: "/#outside-work" },
@@ -61,6 +69,18 @@ export const site = {
     label: "selected work",
     allWork: { label: "All work", href: "/work" },
     readMore: "Read the story",
+  },
+
+  // /work and the project pages (work section handoff, Nov 20)
+  work: {
+    label: "all work",
+    heading: "The problems, and what I built for them.", // TODO(Matthew): confirm
+    filterLabel: "Filter by tag",
+    allTag: "all",
+    backLink: "all work",
+    nextProject: "Next project",
+    sections: { problem: "Problem", approach: "Approach", result: "Result", links: "Links" },
+    spec: { role: "Role", tools: "Tools", year: "Year", result: "Result", team: "Team" },
   },
 
   // About (final, Nov 15). Only the lead is set large.
