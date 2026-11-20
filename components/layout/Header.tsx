@@ -1,94 +1,100 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import { Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
-import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Menu, X } from "lucide-react";
+import { Logo } from "@/components/ui/Logo";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { navItems } from "@/lib/nav";
+import { site } from "@/content/site";
 
-interface HeaderProps {
-  activeSection: string;
-  scrollToSection: (section: string) => void;
-}
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-const Header = ({ activeSection, scrollToSection }: HeaderProps) => {
-  const sections = ["home", "about", "projects", "skills", "resume", "contact"];
-  const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
+  // Close the mobile menu with Escape.
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // For debugging
-  useEffect(() => {
-    if (mounted) {
-      console.log("Current theme:", theme);
-      console.log("Resolved theme:", resolvedTheme);
-    }
-  }, [mounted, theme, resolvedTheme]);
-
-  // Use a more direct approach to determine which logo to show
-  const logoSrc =
-    mounted && resolvedTheme === "dark"
-      ? "/MattLogo_White.png"
-      : "/MattLogo_Black.png";
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="cursor-pointer" onClick={() => scrollToSection("home")}>
-          {mounted ? (
-            <Image
-              src={logoSrc}
-              alt="Mr. Lee"
-              width={80}
-              height={80}
-              className="h-12 w-auto"
-              priority
-            />
-          ) : (
-            // Placeholder during server rendering
-            <div className="h-12 w-24" />
-          )}
-        </div>
-        <nav className="hidden md:flex space-x-6">
-          {sections.map((section) => (
-            <button
-              key={section}
-              onClick={() => scrollToSection(section)}
-              className={`capitalize text-sm font-medium transition-colors ${
-                activeSection === section
-                  ? "text-primary"
-                  : "text-muted-foreground hover:text-primary"
-              }`}
-            >
-              {section}
-            </button>
-          ))}
-        </nav>
-        <div className="flex items-center space-x-4">
-          <ModeToggle />
-          <Button
-            variant="outline"
-            size="sm"
-            className="hidden md:flex"
-            asChild
+    <header className="relative z-40 border-b border-line lg:border-b-0">
+      <div className="wrap flex items-center justify-between gap-6 py-4 lg:py-7">
+        <Link
+          href="/"
+          className="flex min-h-11 items-center gap-4"
+          aria-label={`${site.name}, home`}
+        >
+          <Logo
+            variant="chrome"
+            gradientId="logo-chrome-header"
+            className="w-[43px] lg:w-[51px]"
+          />
+          <span className="label hidden md:inline">{site.headerLabel}</span>
+        </Link>
+
+        <div className="flex items-center gap-3 lg:gap-7">
+          <nav aria-label="Main" className="hidden lg:block">
+            <ul className="flex items-center gap-7">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="inline-flex min-h-11 items-center text-[15px] text-fg transition-colors hover:text-accent"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <span className="label hidden xl:inline">{site.edition.label}</span>
+
+          <ThemeToggle />
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="inline-flex size-11 items-center justify-center rounded-[2px] border border-line text-fg transition-colors hover:border-fg lg:hidden"
           >
-            <a
-              href="https://drive.google.com/file/d/1cpyXkWEZ8g4GTcwsFVxbh38H9toAj88Z/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              View Resume
-            </a>
-          </Button>
+            {menuOpen ? (
+              <X size={20} strokeWidth={1.75} aria-hidden="true" />
+            ) : (
+              <Menu size={20} strokeWidth={1.75} aria-hidden="true" />
+            )}
+          </button>
         </div>
       </div>
+
+      {/* Mobile menu (not in the renders): a simple panel under the header. */}
+      <nav
+        id="mobile-menu"
+        aria-label="Main"
+        hidden={!menuOpen}
+        className="absolute inset-x-0 top-full border-b border-line bg-bg lg:hidden"
+      >
+        <ul className="wrap py-2">
+          {navItems.map((item) => (
+            <li key={item.href} className="border-b border-line last:border-b-0">
+              <Link
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-14 items-center text-[20px] font-semibold tracking-[-0.01em] text-fg"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </header>
   );
-};
-
-export default Header;
+}

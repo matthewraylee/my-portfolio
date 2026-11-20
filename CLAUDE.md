@@ -6,23 +6,25 @@ Personal portfolio site, deployed on Vercel. **Pushing to `main` deploys the liv
 
 **Tech stack**
 - Next.js 15 (App Router) + React 19 + TypeScript
-- Tailwind CSS 4, shadcn/ui-style components on Radix UI, `next-themes` for light/dark mode
-- framer-motion, tsparticles, `react-type-animation` for visuals
-- Contact form: Next.js API route → Nodemailer (Gmail SMTP), protected by reCAPTCHA v3
-- Secrets live in `.env.local` (gitignored): `EMAIL_USER`, `EMAIL_APP_PASSWORD`, `RECAPTCHA_SECRET_KEY`
+- Tailwind CSS 4 with the Edition 01 design tokens in `app/globals.css` (night = default `.dark`, day = `.light`)
+- `next-themes` (night by default, no system theme), Archivo via `next/font/google` (weight + `wdth` axis), `lucide-react` icons
+- Vercel Analytics. No contact form: contact is email only (mailto)
 
 **Folder structure**
-- `app/` — `layout.tsx` (root layout), `page.tsx` (single-page site), `data.ts` (project/portfolio content), `globals.css`
-- `app/api/contact/route.ts` — contact form endpoint (validation, rate limiting, email send)
-- `app/test/` — test page; `middleware.ts` redirects `/test` to `/`
-- `components/sections/` — page sections (Hero, About, Projects, Skills, Resume, Contact)
-- `components/layout/` — Header, Footer, MobileNavigation
-- `components/ui/` — shared UI primitives (button, card, dialog, tabs, toast, …)
-- `components/projects/`, `components/background/` — project dialog, background effects
-- `lib/utils.ts` — `cn()` class helper; `utils/` — misc scripts
-- `public/` — static assets (logo, `Projects/` screenshots)
+- `app/` — `layout.tsx` (header, footer, theme, grain, analytics), `page.tsx` (homepage), `not-found.tsx`, `globals.css` (tokens, type scale, utilities)
+- `components/home/` — homepage sections in order: Hero, SelectedWork, About, WorkWithMe, Experience, OutsideWork, Contact
+- `components/layout/` — Header (desktop nav + mobile menu), Footer
+- `components/ui/` — Logo (SVG, chrome or plain), ButtonLink (hairline primary / underlined secondary), SectionLabel, Placeholder, Grain, ThemeToggle
+- `content/` — all copy: `site.ts` (hero, status line, bio, links, edition), `projects/*` (one file per project; `featured` + `order` pick the homepage highlights), `experience.ts`
+- `site.config.ts` — feature flags (`workWithMe`, `shelfPlayer`)
+- `lib/` — `nav.ts` (nav items, respects flags), `utils.ts` (`cn()` helper)
+- `public/` — static assets
 
 **Commands:** `npm run dev`, `npm run build`, `npm run lint` (lint is skipped during `build` via `next.config.ts`).
+
+## Edition 01
+
+For Edition 01, follow design-reference/edition-01-build-brief.md for all values (colors, fonts, sizes, layout, copy), and compare your work against the screenshots in design-reference/.
 
 ## Workflow rules
 

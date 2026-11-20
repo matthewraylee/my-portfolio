@@ -1,61 +1,26 @@
-"use client";
+import { Logo } from "@/components/ui/Logo";
+import { site } from "@/content/site";
 
-import { Linkedin, Github, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-const Footer = () => {
+export default function Footer() {
   return (
-    <footer className="bg-muted/30 border-t">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-4 md:mb-0">
-            <h2 className="text-xl font-bold">
-              <span className="text-primary">Matthew</span> Ray Lee
-            </h2>
-            <p className="text-sm text-muted-foreground">
-              Data Analyst | Business Intelligence Engineer | Software Developer
-            </p>
-          </div>
-
-          <div className="flex space-x-4">
-            <Button variant="ghost" size="icon" aria-label="LinkedIn">
-              <a
-                href="https://www.linkedin.com/in/matthewraylee/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="GitHub">
-              <a
-                href="https://github.com/matthewraylee/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button variant="ghost" size="icon" aria-label="Email">
-              <a
-                href="mailto:matthewraylee.work@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Mail className="h-5 w-5" />
-              </a>
-            </Button>
-          </div>
-        </div>
-
-        <div className="mt-6 pt-6 border-t border-border text-center">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Matthew Ray Lee. All rights reserved.
+    <footer className="mx-auto w-full max-w-[1296px] border-t border-line">
+      <div className="wrap flex flex-col gap-6 py-10 lg:flex-row lg:items-center lg:justify-between lg:py-11">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-4">
+          <Logo className="w-[40px] text-muted" />
+          <p className="text-[14px] leading-[1.6] text-muted lg:text-[14px]">
+            {site.edition.builtLine}
+            <br />
+            {site.edition.copyright}
           </p>
         </div>
+
+        <a
+          href={site.edition.previous.href}
+          className="inline-flex min-h-11 items-center self-start text-[14px] text-muted underline decoration-underline underline-offset-4 transition-colors hover:text-fg hover:decoration-fg lg:self-auto"
+        >
+          {site.edition.previous.label}&nbsp;→
+        </a>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
